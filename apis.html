@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APIs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>APIs</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="random-joke">
+            <h2>Chuck Norris Jokes</h2>
+            <div id="joke-container">
+                <button onclick="getChuckNorrisJoke()">Carregar Piada</button>
+            </div>
+        </section>
+
+        <section id="spotify-music">
+            <h2>Escute uma música aleatória</h2>
+            <div>
+                <label for="artist-input">Nome do Cantor:</label>
+                <input type="text" id="artist-input" placeholder="Digite o nome do cantor">
+                <button onclick="getRandomArtistSongs()">Buscar Músicas</button>
+            </div>
+            <div id="songs-container"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Luis Felipe Silva de Azevedo</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

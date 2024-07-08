@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Portfólio - Luis Azevedo</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#experiencias">Experiências</a></li>
+                <li><a href="#contato">Contato</a></li>
+                <li><a href="apis.html">APIs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="sobre">
+        <h2>Sobre Mim</h2>
+        <div class="sobre-container">
+            <img src="Imagens/perfil.jpg" alt="Foto de Perfil" class="perfil">
+            <div class="descricao">
+                <p>Olá! Me chamo Luis e o presente portfólio foi desenvolvido utilizando HTML, CSS e JavaScript para aplicação na disciplina de Progração WEB </p>
+                <p>Além disso, possuo formação do Ensino Médio Integral com T.I. no IFPR e compartilho a paixão por cinema, música e história.  </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiencias">
+        <h2>Experiências</h2>
+        <div class="experiencia">
+            <h3>Técnico em Informática</h3>
+            <p>Descrição</p>
+        </div>
+        <div class="experiencia">
+            <h3>Suporte Técnico</h3>
+            <p>Descrição</p>
+        </div>
+        <div class="experiencia">
+            <h3>QA - Analista de Testes</h3>
+            <p>Descrição</p>
+        </div>
+    </section>
+
+    <section id="contato">
+        <h2>Contato</h2>
+        <form id="contactForm">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" name="mensagem" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Luis Felipe Silva de Azevedo</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
