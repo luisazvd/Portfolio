@@ -5,6 +5,7 @@ body {
     box-sizing: border-box;
     min-height: 100vh;
     position: relative;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 header {
@@ -12,6 +13,7 @@ header {
     color: white;
     padding: 1rem;
     text-align: center;
+    transition: background-color 0.3s;
 }
 
 nav ul {
@@ -54,10 +56,11 @@ section {
 
 
 .experiencia {
-    background-color: #f4f4f4;
+    background-color: #ececec;
     margin: 1rem 0;
     padding: 1rem;
     border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 form {
@@ -70,8 +73,7 @@ form label {
     margin: 0.5rem 0 0.2rem;
 }
 
-form input,
-form textarea {
+form input, form textarea {
     padding: 0.5rem;
     margin-bottom: 1rem;
     border: 1px solid #ccc;
@@ -85,6 +87,7 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 button:hover {
@@ -99,4 +102,74 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
+    transition: background-color 0.3s;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+header.dark-mode, footer.dark-mode {
+    background-color: #1e1e1e;
+}
+
+.experiencia.dark-mode {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+button.dark-mode {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+button.dark-mode:hover {
+    background-color: #333;
+}
+
+/* Estilos para o Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #333;
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
 }

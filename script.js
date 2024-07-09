@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', ()=> {
+    loadDarkMode();
+});
+
 document.getElementById('contactForm').addEventListener('submit', function (event) {
     event.preventDefault();
     alert('Mensagem enviada com sucesso!');
@@ -65,3 +69,46 @@ function displaySongs(tracks) {
 
     songsContainer.appendChild(ul);
 }
+
+// Função para alternar entre Dark Mode e Light Mode
+function toggleDarkMode() {
+    const isChecked = document.getElementById('dark-mode-toggle').checked;
+
+    document.body.classList.toggle('dark-mode', isChecked);
+    document.querySelector('header').classList.toggle('dark-mode', isChecked);
+    document.querySelector('footer').classList.toggle('dark-mode', isChecked);
+
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => section.classList.toggle('dark-mode', isChecked));
+
+    const experiencia = document.querySelectorAll('.experiencia');
+    experiencia.forEach(experiencia => experiencia.classList.toggle('dark-mode', isChecked));
+
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => button.classList.toggle('dark-mode', isChecked));
+
+    localStorage.setItem('darkMode', isChecked);
+}
+
+function loadDarkMode() {
+    const isDarkMode = JSON.parse(localStorage.getItem('darkMode'));
+
+    if (isDarkMode) {
+        document.getElementById('dark-mode-toggle').checked = true;
+
+        document.body.classList.add('dark-mode');
+        document.querySelector('header').classList.add('dark-mode');
+        document.querySelector('footer').classList.add('dark-mode');
+
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => section.classList.add('dark-mode'));
+
+        const experiencia = document.querySelectorAll('.experiencia');
+        experiencia.forEach(experiencia => experiencia.classList.add('dark-mode'));
+
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => button.classList.add('dark-mode'));
+    }
+}
+
+
