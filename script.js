@@ -2,10 +2,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
     loadDarkMode();
 });
 
-document.getElementById('contactForm').addEventListener('submit', function (event) {
-    event.preventDefault();
-    alert('Mensagem enviada com sucesso!');
-});
 
 /* Função para obter músicas aleatórias de um cantor no Spotify
 function getRandomArtistSongs() {
