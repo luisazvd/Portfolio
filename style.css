@@ -128,7 +128,6 @@ button.dark-mode:hover {
     background-color: #333;
 }
 
-/* Estilos para o Toggle Switch */
 .toggle-switch {
     position: relative;
     display: inline-block;
@@ -172,4 +171,70 @@ input:checked+.slider {
 
 input:checked+.slider:before {
     transform: translateX(26px);
+}
+
+
+#contato {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ccc;
+    margin-bottom: 60px;
+}
+
+#contato h2 {
+    margin-bottom: 20px;
+}
+
+.contato-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.contato-item label {
+    margin-right: 10px;
+}
+
+.contato-item input {
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.contato-item button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.contato-item button:hover {
+    background-color: #0056b3;
+}
+
+body.dark-mode #contato {
+    background-color: #333;
+    border-top: 1px solid #444;
+}
+
+body.dark-mode #contato h2,
+body.dark-mode #contato label,
+body.dark-mode #contato input {
+    color: white;
+}
+
+body.dark-mode #contato input {
+    background-color: #444;
+    border: 1px solid #555;
+}
+
+body.dark-mode .contato-item button {
+    background-color: #0056b3;
+}
+
+body.dark-mode .contato-item button:hover {
+    background-color: #003f7f;
 }

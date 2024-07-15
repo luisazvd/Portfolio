@@ -6,28 +6,8 @@ document.getElementById('contactForm').addEventListener('submit', function (even
     event.preventDefault();
     alert('Mensagem enviada com sucesso!');
 });
-// Função para obter uma piada sobre Chuck Norris da API
-function getChuckNorrisJoke() {
-    // Endpoint da API de piadas do Chuck Norris
-    const apiUrl = 'https://api.chucknorris.io/jokes/random';
 
-    // Realiza a requisição HTTP
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            const joke = data.value; // Obtém a piada do campo 'value' do objeto retornado
-            displayJoke(joke); // Chama a função para exibir a piada na página
-        })
-        .catch(error => console.error('Erro ao obter piada:', error));
-}
-
-// Função para exibir a piada na página
-function displayJoke(joke) {
-    const jokeContainer = document.getElementById('joke-container');
-    jokeContainer.innerHTML = `<p>${joke}</p>`;
-}
-
-// Função para obter músicas aleatórias de um cantor no Spotify
+/* Função para obter músicas aleatórias de um cantor no Spotify
 function getRandomArtistSongs() {
     const artistName = document.getElementById('artist-input').value;
     const apiUrl = `https://api.spotify.com/v1/search?q=${artistName}&type=artist`;
@@ -50,7 +30,6 @@ function getRandomArtistSongs() {
         .catch(error => console.error('Erro ao buscar músicas:', error));
 }
 
-// Função para exibir as músicas na página
 function displaySongs(tracks) {
     const songsContainer = document.getElementById('songs-container');
     songsContainer.innerHTML = '';
@@ -69,8 +48,8 @@ function displaySongs(tracks) {
 
     songsContainer.appendChild(ul);
 }
+*/
 
-// Função para alternar entre Dark Mode e Light Mode
 function toggleDarkMode() {
     const isChecked = document.getElementById('dark-mode-toggle').checked;
 
@@ -111,4 +90,9 @@ function loadDarkMode() {
     }
 }
 
-
+function copiarDado(elementId) {
+    const element = document.getElementById(elementId);
+    element.select();
+    document.execCommand('copy');
+    alert(`Copiado: ${element.value}`);
+}
