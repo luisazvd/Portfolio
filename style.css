@@ -11,9 +11,9 @@ body {
 header {
     background-color: #333;
     color: white;
-    padding: 1rem;
     text-align: center;
     transition: background-color 0.3s;
+    padding: 1%;
 }
 
 nav ul {
@@ -99,8 +99,7 @@ footer {
     padding: 1em;
     background-color: #333;
     color: white;
-    position: fixed;
-    width: 100%;
+    position: relative;
     bottom: 0;
     transition: background-color 0.3s;
 }
@@ -237,4 +236,45 @@ body.dark-mode .contato-item button {
 
 body.dark-mode .contato-item button:hover {
     background-color: #003f7f;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+#tasks {
+    list-style-type: none;
+    padding: 0;
+}
+
+#tasks li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#tasks li span {
+    margin-left: 10px;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: grey;
+}
+
+#grades {
+    list-style-type: none;
+    padding: 0;
+}
+
+#grades li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#grades li span {
+    flex-grow: 1;
+    margin-right: 10px;
 }

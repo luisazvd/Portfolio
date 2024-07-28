@@ -10,7 +10,7 @@
 
 <body>
     <header>
-        <h1>APIs</h1>
+        <h1>Ferramentas</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -21,16 +21,60 @@
             <span class="slider"></span>
         </label>
     </header>
-
-    <section>
-        <h2>Consumo de APIs</h2>      
-<!--        <div class="api-container">
-            <input type="text" id="artist-input" placeholder="Digite o nome do cantor">
-            <button onclick="getRandomArtistSongs()">Buscar Músicas</button>
-            <div id="songs-container"></div>
+<main>
+    <section id="imc-calculator">
+        <h2>Calculadora IMC</h2>
+        <div class="experiencia">
+            <label for="weight">Peso (kg):</label>
+            <input type="number" id="weight" placeholder="Peso">
+            <label for="height">Altura (m):</label>
+            <input type="number" id="height" placeholder="Altura">
+            <button onclick="calculateIMC()">Calcular IMC</button>
+            <p id="imc-result"></p>
         </div>
-    -->
     </section>
+
+    <section id="todo-list">
+        <h2>Lista de Tarefas</h2>
+        <div class="experiencia">
+            <input type="text" id="new-task" placeholder="Nova tarefa">
+            <button onclick="addTask()">Adicionar</button>
+            <ul id="tasks"></ul>
+        </div>
+    </section>
+
+    <section id="grade-manager">
+        <h2>Gerenciador de Notas</h2>
+        <div class="experiencia">
+        <input type="text" id="discipline-name" placeholder="Disciplina">
+            <select id="grade-value">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+            <button onclick="addGrade()">Adicionar</button>
+            <ul id="grades"></ul>
+        </div>
+    </section>
+
+    <section id="soundtrack-catalog">
+        <h2>Detalhador de Filmes</h2>
+        <div class="experiencia">
+            <input type="text" id="movie-title" placeholder="Título do Filme">
+            <button onclick="fetchSoundtracks()">Buscar Filme</button>
+            <ul id="soundtracks"></ul>
+        </div>
+    </section>
+
+    <section id="movie-calendar">
+        <h2>Calendário de Lançamentos</h2>
+        <div class="experiencia">
+            <button onclick="fetchMovieReleases()">Ver Lançamentos</button>
+            <ul id="movie-releases"></ul>
+        </div>
+    </section>
+</main>
 
     <footer>
         <p>&copy; 2024 Luis Felipe Silva de Azevedo</p>

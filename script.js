@@ -1,50 +1,10 @@
 document.addEventListener('DOMContentLoaded', ()=> {
     loadDarkMode();
+    loadTasks();
+    loadGrades();
 });
 
-
-/* Função para obter músicas aleatórias de um cantor no Spotify
-function getRandomArtistSongs() {
-    const artistName = document.getElementById('artist-input').value;
-    const apiUrl = `https://api.spotify.com/v1/search?q=${artistName}&type=artist`;
-
-    fetch(apiUrl, {
-        headers: {
-            'Authorization': 'Bearer YOUR_ACCESS_TOKEN' // Substitua YOUR_ACCESS_TOKEN pelo seu token de acesso do Spotify
-        }
-    })
-        .then(response => response.json())
-        .then(data => {
-            const artistId = data.artists.items[0].id; // Obtém o ID do primeiro artista retornado
-            return fetch(`https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=BR`);
-        })
-        .then(response => response.json())
-        .then(data => {
-            const tracks = data.tracks.slice(0, 5); // Obtém as primeiras 5 músicas
-            displaySongs(tracks); // Chama a função para exibir as músicas na página
-        })
-        .catch(error => console.error('Erro ao buscar músicas:', error));
-}
-
-function displaySongs(tracks) {
-    const songsContainer = document.getElementById('songs-container');
-    songsContainer.innerHTML = '';
-
-    if (tracks.length === 0) {
-        songsContainer.innerHTML = '<p>Nenhuma música encontrada para este cantor.</p>';
-        return;
-    }
-
-    const ul = document.createElement('ul');
-    tracks.forEach(track => {
-        const li = document.createElement('li');
-        li.textContent = `${track.name} - ${track.artists[0].name}`;
-        ul.appendChild(li);
-    });
-
-    songsContainer.appendChild(ul);
-}
-*/
+const apiKey = '87bb53ca391277908ce975d92d8da13b';
 
 function toggleDarkMode() {
     const isChecked = document.getElementById('dark-mode-toggle').checked;
@@ -91,4 +51,158 @@ function copiarDado(elementId) {
     element.select();
     document.execCommand('copy');
     alert(`Copiado: ${element.value}`);
+}
+
+function calculateIMC() {
+    const weight = document.getElementById('weight').value;
+    const height = document.getElementById('height').value;
+    if (weight && height) {
+        const imc = (weight / (height * height)).toFixed(2);
+        document.getElementById('imc-result').textContent = `Seu IMC é ${imc}`;
+    } else {
+        document.getElementById('imc-result').textContent = 'Valores inválidos!';
+    }
+}
+
+function loadTasks() {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const ul = document.getElementById('tasks');
+    ul.innerHTML = '';
+    tasks.forEach((task, index) => {
+        const li = document.createElement('li');
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = task.completed;
+        checkbox.addEventListener('change', () => toggleTaskCompletion(index));
+
+        const span = document.createElement('span');
+        span.textContent = task.text;
+        if (task.completed) {
+            span.classList.add('completed');
+        }
+
+        li.appendChild(checkbox);
+        li.appendChild(span);
+        ul.appendChild(li);
+    });
+}
+
+function saveTasks(tasks) {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function addTask() {
+    const taskText = document.getElementById('new-task').value;
+    if (taskText) {
+        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        tasks.push({ text: taskText, completed: false });
+        saveTasks(tasks);
+        document.getElementById('new-task').value = '';
+        loadTasks();
+    }
+}
+
+
+function toggleTaskCompletion(index) {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks[index].completed = !tasks[index].completed;
+    saveTasks(tasks);
+    loadTasks();
+}
+
+function loadGrades() {
+    const grades = JSON.parse(localStorage.getItem('grades')) || [];
+    const ul = document.getElementById('grades');
+    ul.innerHTML = '';
+    grades.forEach((grade, index) => {
+        const li = document.createElement('li');
+
+        const span = document.createElement('span');
+        span.textContent = `Disciplina: ${grade.discipline}, Conceito: ${grade.grade}`;
+
+        const select = document.createElement('select');
+        ['A', 'B', 'C', 'D'].forEach(optionValue => {
+            const option = document.createElement('option');
+            option.value = optionValue;
+            option.textContent = optionValue;
+            if (grade.grade === optionValue) {
+                option.selected = true;
+            }
+            select.appendChild(option);
+        });
+        select.addEventListener('change', () => updateGrade(index, select.value));
+
+        li.appendChild(span);
+        li.appendChild(select);
+        ul.appendChild(li);
+    });
+}
+
+function saveGrades(grades) {
+    localStorage.setItem('grades', JSON.stringify(grades));
+}
+
+function addGrade() {
+    const disciplineName = document.getElementById('discipline-name').value;
+    const gradeValue = document.getElementById('grade-value').value;
+    if (disciplineName && gradeValue) {
+        const grades = JSON.parse(localStorage.getItem('grades')) || [];
+        grades.push({ discipline: disciplineName, grade: gradeValue });
+        saveGrades(grades);
+        document.getElementById('discipline-name').value = '';
+        document.getElementById('grade-value').value = 'A';
+        loadGrades();
+    }
+}
+
+function updateGrade(index, newGrade) {
+    const grades = JSON.parse(localStorage.getItem('grades')) || [];
+    grades[index].grade = newGrade;
+    saveGrades(grades);
+    loadGrades();
+}
+
+function fetchSoundtracks() {
+    const movieTitle = document.getElementById('movie-title').value;
+    if (movieTitle) {
+        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movieTitle}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.results.length > 0) {
+                    const movieId = data.results[0].id;
+                    fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
+                        .then(response => response.json())
+                        .then(movieDetails => {
+                            const ul = document.getElementById('soundtracks');
+                            ul.innerHTML = '';
+                            const li = document.createElement('li');
+                            li.innerHTML = `<strong>Título:</strong> ${movieDetails.title}<br>
+                                            <strong>Data de Lançamento:</strong> ${movieDetails.release_date}<br>
+                                            <strong>Sinopse:</strong> ${movieDetails.overview}`;
+                            ul.appendChild(li);
+                        });
+                } else {
+                    alert('Nenhum filme encontrado com esse título.');
+                }
+            })
+            .catch(error => console.error('Erro ao buscar filme:', error));
+    } else {
+        alert('Insira o título do filme.');
+    }
+}
+
+function fetchMovieReleases() {
+    fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`)
+        .then(response => response.json())
+        .then(data => {
+            const ul = document.getElementById('movie-releases');
+            ul.innerHTML = '';
+            data.results.forEach(movie => {
+                const li = document.createElement('li');
+                li.textContent = `${movie.title} - ${movie.release_date}`;
+                ul.appendChild(li);
+            });
+        })
+        .catch(error => console.error('Erro ao buscar filmes:', error));
 }
